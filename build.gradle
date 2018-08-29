@@ -40,5 +40,6 @@ dependencies {
     apt "org.projectlombok:lombok:1.18.2"
     compile group: 'org.springframework', name: 'spring-web', version: "${springVersion}"
     compile('org.springframework.boot:spring-boot-starter')
+    compile('org.springframework.boot:spring-boot-starter-tomcat')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

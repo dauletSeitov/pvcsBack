@@ -1,6 +1,5 @@
-package just.fo.fun.auth;
+package just.fo.fun;
 
-import just.fo.fun.auth.model.AuthDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.Arrays;

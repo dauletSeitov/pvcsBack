@@ -1,4 +1,4 @@
-package just.fo.fun.auth.model;
+package just.fo.fun;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,6 +1,5 @@
-package just.fo.fun.auth;
+package just.fo.fun;
 
-import just.fo.fun.auth.model.AuthDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
