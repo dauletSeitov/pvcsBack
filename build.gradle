@@ -41,5 +41,15 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-web', version: "${springVersion}"
     compile('org.springframework.boot:spring-boot-starter')
     compile('org.springframework.boot:spring-boot-starter-tomcat')
+    compile('org.springframework.boot:spring-boot-starter-data-rest')
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: "${hibernateVersion}"
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: "${springBootVersion}"
+
+    compile("org.hibernate:hibernate-core:${hibernateVersion}") {
+        exclude group: 'org.apache.geronimo.specs', module: 'geronimo-jta_1.1_spec'
+    }
+
+    runtime group: 'org.postgresql', name: 'postgresql', version: '42.1.1'
+    //compile('org.springframework.boot:spring-boot-starter-web')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

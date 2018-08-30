@@ -1,58 +1,38 @@
 package just.fo.fun;
 
-
-import com.sun.org.apache.bcel.internal.classfile.Code;
-import just.fo.fun.AuthDto;
-import just.fo.fun.AuthService;
+import org.jboss.logging.annotations.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
-@RequestMapping("/def")
-public class AuthController {
-//
-//    @Autowired
-//    private AuthService authService;
-//
-//
-//
-//    @PostMapping
-//    public ResponseEntity<Code> insertDictionary(@RequestBody final AuthDto authDto) {
-//
-//        Long res = authService.create(authDto);
-//
-//        return res == 0
-//                ? new ResponseEntity<>(HttpStatus.NOT_FOUND)
-//                : new ResponseEntity<>(HttpStatus.CREATED);
-//
-//    }
-//
-////    @GetMapping
-////    public ResponseEntity<List<AuthDto>> getAll() {
-////    }//
-////        List<AuthDto> result = authService.getAll();
-////        return result == null
-////                ? new ResponseEntity<>(HttpStatus.NOT_FOUND)
-////                : new ResponseEntity<>(result, HttpStatus.OK);
-//
-//
-//
-//    @RequestMapping("/hello/{name}")
-//    String hello(@PathVariable String name) {
-//        return "Hello, " + name + "!";
-//    }
-//
-//    @GetMapping("/mal")
-//    String helliio() {
-//        return "Hello, "  + "!";
-//    }
+import java.util.List;
 
-    @RequestMapping("/get")
-    public String doGet() {
-        System.out.println("---------------------------------------------------");
-        return "got{" + "}";
+@RestController
+public class AuthController {
+
+    @Autowired
+    private AuthService authService;
+
+
+
+    @PostMapping
+    public ResponseEntity insertDictionary(@RequestBody final Post post) {
+
+        Post res = authService.create(post);
+
+        return res == null
+                ? new ResponseEntity<>(HttpStatus.NOT_FOUND)
+                : new ResponseEntity<>(HttpStatus.CREATED);
+
     }
+
+    @GetMapping
+    public ResponseEntity<List<Post>> getAll() {
+        List<Post> result = authService.getAll();
+        return result == null
+                ? new ResponseEntity<>(HttpStatus.NOT_FOUND)
+                : new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
 }

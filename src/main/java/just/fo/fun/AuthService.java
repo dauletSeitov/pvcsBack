@@ -10,11 +10,11 @@ public class AuthService {
 
     @Autowired
     private AuthRepository authRepository;
-    public List<AuthDto> getAll() {
-        return authRepository.getAll();
+    public List<Post> getAll() {
+        return authRepository.findAll();
     }
 
-    public Long create(AuthDto authDto) {
-        return  authRepository.create(authDto);
+    public Post create(Post post) {
+        return  authRepository.save(post);
     }
 }
