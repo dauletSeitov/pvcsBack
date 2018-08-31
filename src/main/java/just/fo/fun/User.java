@@ -5,26 +5,19 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Slf4j
 @Entity
 @ToString
 @Data
-public class Post {
+@Table(name = "\"user\"")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
-    @ManyToOne
-
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    private String title;
-
-    private String text;
-
-    private String imageUrl;
+    private String login;
+    private String password;
+    private String name;
 
 }
