@@ -1,0 +1,5 @@
+1) db
+2) security
+3) controllers, services, repositories
+4) front end
+5) mobile
