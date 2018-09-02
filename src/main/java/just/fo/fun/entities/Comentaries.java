@@ -1,4 +1,4 @@
-package just.fo.fun;
+package just.fo.fun.entities;
 
 import lombok.Data;
 import lombok.ToString;
@@ -10,14 +10,18 @@ import javax.persistence.*;
 @Entity
 @ToString
 @Data
-@Table(name = "\"user\"")
-public class User {
+public class Comentaries {
+
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
-    private String login;
-    private String password;
-    private String name;
+    @ManyToOne
+    private User user;
+
+    @ManyToOne
+    private Post post;
+
+    private String text;
 
 }

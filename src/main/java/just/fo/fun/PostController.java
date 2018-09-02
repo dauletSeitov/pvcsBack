@@ -1,6 +1,6 @@
 package just.fo.fun;
 
-import org.jboss.logging.annotations.Pos;
+import just.fo.fun.entities.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class AuthController {
+public class PostController {
 
     @Autowired
     private AuthService authService;

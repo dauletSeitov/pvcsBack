@@ -1,5 +1,6 @@
 package just.fo.fun;
 
+import just.fo.fun.entities.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
