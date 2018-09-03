@@ -3,7 +3,7 @@ buildscript {
         ext.springVersion = '4.3.17.RELEASE'
         ext.springSecurityVersion = '4.2.6.RELEASE'
         ext.springBootVersion = '1.5.13.RELEASE'
-        ext.hibernateVersion = '5.2.3.RELEASE'
+        ext.hibernateVersion = '5.2.3.Final'
     }
     repositories {
         mavenCentral()
