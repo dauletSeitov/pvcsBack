@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-public class PostController {
+//@RestController
+public class _PostController {
 
     @Autowired
     private AuthService authService;

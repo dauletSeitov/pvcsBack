@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @ToString
 @Data
-public class Comentaries {
+public class Commentary {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
