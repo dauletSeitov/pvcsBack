@@ -27,8 +27,8 @@ public class Post {
     @Length(max = 512)
     private String imageUrl;
 
+    @Column
     @UpdateTimestamp
-    @Column(insertable = false, updatable = false, nullable = false)
     private LocalDateTime updated;
 
     @ManyToOne
