@@ -35,6 +35,6 @@ public class Post {
     private Category category;
 
     @Column(columnDefinition="bigint default '0'")
-    private Long likes;
+    private Long rating;
 
 }

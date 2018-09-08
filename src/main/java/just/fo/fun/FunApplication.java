@@ -1,6 +1,8 @@
 package just.fo.fun;
 
+import just.fo.fun.commentary.repository.CommentaryRepository;
 import just.fo.fun.entities.Category;
+import just.fo.fun.entities.Commentary;
 import just.fo.fun.entities.Post;
 import just.fo.fun.entities.User;
 import just.fo.fun.post.repository.PostRepository;
@@ -16,16 +18,10 @@ import java.util.concurrent.ThreadLocalRandom;
 @SpringBootApplication
 
 public class FunApplication {
-
-
-
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(FunApplication.class, args);
         new InitDB(context).fillDb();
     }
-
-
-
 }
 
 class InitDB{
@@ -40,6 +36,7 @@ class InitDB{
         fillUser(100);
         fillCategory(20);
         fillPost(1000);
+        fillCommentary(1000);
         System.out.println("initialization is finished !");
     }
 
@@ -48,7 +45,7 @@ class InitDB{
 
         if(len <= repository.findAll().size()) return;
 
-        for (int i = 1; i < 100 ; i++) {
+        for (int i = 0; i < len ; i++) {
 
             User user = new User();
             user.setLogin(randomRow("login"));
@@ -69,7 +66,7 @@ class InitDB{
 
         if(len <= repository.findAll().size()) return;
 
-        for (int i = 1; i < 20 ; i++) {
+        for (int i = 0; i < len ; i++) {
 
             Category category = new Category();
             category.setName(randomRow("CN"));
@@ -96,17 +93,63 @@ class InitDB{
         int userCount = userList.size();
         int categoryCount = categoryList.size();
 
-        for (int i = 1; i < 1000 ; i++) {
+        for (int i = 0; i < len ; i++) {
 
             Post post = new Post();
             post.setCategory(categoryList.get(ThreadLocalRandom.current().nextInt(1, categoryCount-1)));
             post.setImageUrl(randomRow("image"));
-            post.setLikes(ThreadLocalRandom.current().nextLong(-10000, 10000));
+            post.setRating(ThreadLocalRandom.current().nextLong(-10000, 10000));
             post.setTitle(randomRow("title"));
             post.setUser(userList.get(ThreadLocalRandom.current().nextInt(1, userCount-1)));
 
             try {
                 repository.save(post);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void fillCommentary(int len){
+
+        CommentaryRepository repository = context.getBean(CommentaryRepository.class);
+
+        if(len <= repository.findAll().size()) return;
+
+        UserRepository userRepository = context.getBean(UserRepository.class);
+        List<User> userList = userRepository.findAll();
+        int userCount = userList.size();
+
+        Post post = context.getBean(PostRepository.class).findOne(1L);
+
+        for (int i = 0; i < len ; i++) {
+
+            List<Commentary> parentList = repository.findAll();
+            int parentCount = parentList.size();
+
+            Commentary commentary = new Commentary();
+            Commentary parent;
+
+            try {
+                parent = parentList.get(ThreadLocalRandom.current().nextInt(1, parentCount-1));
+                if(ThreadLocalRandom.current().nextInt(1, 10) == 5){
+                    parent = null;
+                }
+            }
+            catch (Exception e){
+                parent = null;
+            }
+
+
+            commentary.setImageUrl(randomRow("image"));
+            commentary.setParent(parent);
+            commentary.setPost(post);
+            commentary.setRating(ThreadLocalRandom.current().nextLong(-10000, 10000));
+            commentary.setText(randomRow("text"));
+            commentary.setUser(userList.get(ThreadLocalRandom.current().nextInt(1, userCount-1)));
+
+            try {
+                repository.save(commentary);
             }catch (Exception e){
                 e.printStackTrace();
             }

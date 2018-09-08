@@ -3,7 +3,7 @@
 3) controllers, services, repositories
 4) front end
 5) mobile
-
+6) indexes
 
 
 https://stackoverflow.com/questions/1260878/mysql-structure-for-comments-and-comment-replies
