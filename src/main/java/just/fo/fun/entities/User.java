@@ -1,5 +1,9 @@
 package just.fo.fun.entities;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import just.fo.fun.utils.serializers.LocalDateTimeDeserializer;
+import just.fo.fun.utils.serializers.LocalDateTimeSerializer;
 import lombok.Data;
 import lombok.ToString;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -24,6 +28,8 @@ public class User {
 
     @Column
     @UpdateTimestamp
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime updated;
 
 }
