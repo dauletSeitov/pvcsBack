@@ -1,4 +1,4 @@
-package just.fo.fun;
+package just.fo.fun.category.repository;
 
 import just.fo.fun.entities.Category;
 import org.springframework.data.jpa.repository.JpaRepository;

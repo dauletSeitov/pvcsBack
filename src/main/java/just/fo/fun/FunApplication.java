@@ -1,5 +1,6 @@
 package just.fo.fun;
 
+import just.fo.fun.category.repository.CategoryRepository;
 import just.fo.fun.commentary.repository.CommentaryRepository;
 import just.fo.fun.entities.Category;
 import just.fo.fun.entities.Commentary;

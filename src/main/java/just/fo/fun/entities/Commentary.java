@@ -29,6 +29,7 @@ public class Commentary {
     @ManyToOne
     private Post post;
 
+    @Column(nullable = false)
     private String text;
 
     @Length(max = 512)
