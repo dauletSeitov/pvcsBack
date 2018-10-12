@@ -36,28 +36,26 @@ public class CategoryController {
         try {
             result = categoryService.save(category);
         }catch (Exception e){
-            throw new MessageException("ffffffff" + e.getMessage());
+            throw new MessageException("can not save category" + e.getMessage());
         }
         return result == null
                 ? new ResponseEntity<>(HttpStatus.CONFLICT)
                 : new ResponseEntity<>(result, HttpStatus.OK);
 
     }
-/*
-    @PutMapping
-    public ResponseEntity updateUser(@Valid @RequestBody final UserDto userDto) {
 
-        if (userDto.getId() == null)
+    @PutMapping
+    public ResponseEntity updateUser(@Valid @RequestBody final Category category) {
+
+        if (category.getId() == null)
             throw new MessageException("id must not be empty !");
-        User user = new User();
-        BeanUtils.copyProperties(userDto, user);
-        User resultUser = userService.save(user);
-        return resultUser == null
+        Category result = categoryService.save(category);
+        return result == null
                 ? new ResponseEntity<>(HttpStatus.CONFLICT)
-                : new ResponseEntity<>(resultUser, HttpStatus.OK);
+                : new ResponseEntity<>(result, HttpStatus.OK);
 
     }
-
+/*
     @GetMapping("/{id}")
     public ResponseEntity getUser(@PathVariable final Long id) {
 

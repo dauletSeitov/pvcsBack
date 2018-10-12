@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Slf4j
 @Entity
@@ -18,5 +19,6 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
 
+    @NotNull
     private String name;
 }
