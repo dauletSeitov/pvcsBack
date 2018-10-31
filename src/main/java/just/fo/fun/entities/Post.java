@@ -37,8 +37,8 @@ public class Post {
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime updated;
 
-    @ManyToOne
-    private Category category;
+//    @ManyToOne
+//    private Category category;
 
     @Column(columnDefinition="bigint default '0'")
     private Long rating;

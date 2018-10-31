@@ -14,11 +14,14 @@ import javax.validation.constraints.NotNull;
 @Entity
 @ToString
 @Data
-public class Category {
+public class IncidentType {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
 
     @NotNull
     private String name;
+    @NotNull
+    private String description;
+
 }
