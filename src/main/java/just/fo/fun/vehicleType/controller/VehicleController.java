@@ -1,22 +1,24 @@
-package just.fo.fun.incidentType.controller;
+package just.fo.fun.vehicleType.controller;
 
-import just.fo.fun.entities.IncidentType;
-import just.fo.fun.incidentType.service.IncidentService;
+import just.fo.fun.entities.VehicleType;
+import just.fo.fun.vehicleType.service.VehicleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/incident")
-public class IncidentController {
+@RequestMapping("/api/vehicle")
+public class VehicleController {
 
     @Autowired
-    private IncidentService incidentService;
+    private VehicleService vehicleService;
 
 //    @PostMapping
 //    public ResponseEntity insertUser(@Valid @RequestBody final Category category) {
@@ -64,7 +66,7 @@ public class IncidentController {
     @GetMapping("/")
     public ResponseEntity getIncidents() {
 
-        List<IncidentType> incidentTypes = incidentService.findAll();
+        List<VehicleType> incidentTypes = vehicleService.findAll();
 
         return incidentTypes == null
                 ? new ResponseEntity<>(HttpStatus.CONFLICT)

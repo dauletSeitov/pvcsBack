@@ -39,11 +39,11 @@ public class AuthController {
 
 
 //    @PutMapping
-//    public ResponseEntity updateUser(@Valid @RequestBody final Category incidentType) {
+//    public ResponseEntity updateUser(@Valid @RequestBody final Category vehicleType) {
 //
-//        if (incidentType.getId() == null)
+//        if (vehicleType.getId() == null)
 //            throw new MessageException("id must not be empty !");
-//        Category result = categoryService.save(incidentType);
+//        Category result = categoryService.save(vehicleType);
 //        return result == null
 //                ? new ResponseEntity<>(HttpStatus.CONFLICT)
 //                : new ResponseEntity<>(result, HttpStatus.OK);

@@ -13,8 +13,8 @@ public class AuthService {
     @Autowired
     private UserRepository userRepository;
 
-//    public Category save(Category incidentType){
-//        return categoryRepository.save(incidentType);
+//    public Category save(Category vehicleType){
+//        return categoryRepository.save(vehicleType);
 //    }
 //
 //    public Category findOne(Integer id){

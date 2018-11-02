@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @ToString
 @Data
-public class IncidentType {
+public class VehicleType {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
