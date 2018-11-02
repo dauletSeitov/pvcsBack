@@ -89,7 +89,7 @@ public class CommentaryController {
 
     }
 */
-    //by post id
+    //by incident id
     @GetMapping("/post-id/{id}")
     public ResponseEntity getUser(@PathVariable final Long id) {
 

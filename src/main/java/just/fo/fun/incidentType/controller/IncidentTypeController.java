@@ -1,7 +1,7 @@
 package just.fo.fun.incidentType.controller;
 
 import just.fo.fun.entities.IncidentType;
-import just.fo.fun.incidentType.service.IncidentService;
+import just.fo.fun.incidentType.service.IncidentTypeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,13 +12,13 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/incident")
-public class IncidentController {
+@RequestMapping("/api/incident-type")
+public class IncidentTypeController {
 
     @Autowired
-    private IncidentService incidentService;
+    private IncidentTypeService incidentService;
 
-//    @PostMapping
+//    @PostMappingincidentController
 //    public ResponseEntity insertUser(@Valid @RequestBody final Category category) {
 //
 //        if (category.getId() != null)

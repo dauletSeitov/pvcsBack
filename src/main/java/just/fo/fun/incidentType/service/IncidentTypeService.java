@@ -1,17 +1,17 @@
 package just.fo.fun.incidentType.service;
 
 import just.fo.fun.entities.IncidentType;
-import just.fo.fun.incidentType.repository.InsidentRepository;
+import just.fo.fun.incidentType.repository.InsidentTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class IncidentService {
+public class IncidentTypeService {
 
     @Autowired
-    private InsidentRepository insidentRepository;
+    private InsidentTypeRepository insidentRepository;
 
 //    public Category save(Category category){
 //        return categoryRepository.save(category);

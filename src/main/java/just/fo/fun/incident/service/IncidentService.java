@@ -1,7 +1,8 @@
-package just.fo.fun.post.service;
+package just.fo.fun.incident.service;
 
+import just.fo.fun.entities.Incident;
 import just.fo.fun.entities.Post;
-import just.fo.fun.post.repository.PostRepository;
+import just.fo.fun.incident.repository.IncidentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,20 +11,20 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PostService {
+public class IncidentService {
 
     @Autowired
-    private PostRepository postRepository;
+    private IncidentRepository postRepository;
 
-    public Post save(Post post){
-        return postRepository.save(post);
+    public Incident save(Incident incident){
+        return postRepository.save(incident);
     }
 
-    public Post findOne(Long id){
+    public Incident findOne(Long id){
         return postRepository.findOne(id);
     }
 
-    public List<Post> findAll(){
+    public List<Incident> findAll(){
         return postRepository.findAll();
     }
 
@@ -32,7 +33,7 @@ public class PostService {
     }
 
 
-    public Page<Post> getAll(Pageable pageable) {
-         return postRepository.getAll(pageable);
+    public List<Incident> getAll() {
+         return postRepository.findAll();
     }
 }

@@ -1,8 +1,10 @@
-package just.fo.fun.post.Controller;
+package just.fo.fun.incident.Controller;
 
+import just.fo.fun.entities.Incident;
 import just.fo.fun.entities.Post;
 
-import just.fo.fun.post.service.PostService;
+import just.fo.fun.incident.model.IncidentDto;
+import just.fo.fun.incident.service.IncidentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,13 +14,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/post")
-public class PostController {
+@RequestMapping("/api/incident")
+public class IncidentController {
     @Autowired
-    private PostService postService;
+    private IncidentService postService;
 
 /*
 
@@ -97,31 +100,11 @@ public class PostController {
 
 
     @GetMapping
-    public ResponseEntity getPost(Pageable request) {
+    public ResponseEntity getIncidents( ) {
 
-        Page<Post> posts = postService.getAll(request);
-/*
-        List<UserDto> resultUserDto = users.stream().map(itm -> {
-            UserDto userDto = new UserDto();
-            BeanUtils.copyProperties(itm, userDto);
-            return userDto;
-        }).collect(Collectors.toList());*/
-
-    Long totalEl = posts.getTotalElements();
-    Integer totalPage = posts.getTotalPages();
-    List<Post> postList = posts.getContent();
-
-
-        HashMap<String, Object> response = new HashMap<>();
-
-        response.put("postList", postList);
-        response.put("totalPage", totalPage);
-        response.put("totalEl", totalEl);
-
-
-        return totalEl == null || totalEl.equals(0L)
-                ? new ResponseEntity<>(HttpStatus.CONFLICT)
-                : new ResponseEntity<>(response, HttpStatus.OK);
+        List<Incident> incidents = postService.getAll();
+        List<IncidentDto> incidentDtos = incidents.stream().map(IncidentDto::new).collect(Collectors.toList());
+        return new ResponseEntity<>(incidentDtos, HttpStatus.OK);
 
     }
 
