@@ -17,9 +17,9 @@ public class VehicleService {
 //        return categoryRepository.save(category);
 //    }
 //
-//    public Category findOne(Integer id){
-//        return categoryRepository.findOne(id);
-//    }
+    public VehicleType findOne(Long id){
+        return vehicleRepository.findOne(id);
+    }
 //
     public List<VehicleType> findAll(){
         return vehicleRepository.findAll();

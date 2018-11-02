@@ -11,18 +11,18 @@ import java.util.List;
 public class IncidentTypeService {
 
     @Autowired
-    private InsidentTypeRepository insidentRepository;
+    private InsidentTypeRepository incidentRepository;
 
 //    public Category save(Category category){
 //        return categoryRepository.save(category);
 //    }
 //
-//    public Category findOne(Integer id){
-//        return categoryRepository.findOne(id);
-//    }
+    public IncidentType findOne(Long id){
+        return incidentRepository.findOne(id);
+    }
 //
     public List<IncidentType> findAll(){
-        return insidentRepository.findAll();
+        return incidentRepository.findAll();
     }
 //
 //    public void delete(Integer id){

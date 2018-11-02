@@ -1,18 +1,19 @@
 package just.fo.fun.incident.Controller;
 
+import just.fo.fun.area.service.AreaService;
 import just.fo.fun.entities.Incident;
-import just.fo.fun.entities.Post;
-
+import just.fo.fun.exception.MessageException;
 import just.fo.fun.incident.model.IncidentDto;
 import just.fo.fun.incident.service.IncidentService;
+import just.fo.fun.incidentType.service.IncidentTypeService;
+import just.fo.fun.vehicleType.service.VehicleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.HashMap;
+
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,31 +22,52 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/incident")
 public class IncidentController {
     @Autowired
-    private IncidentService postService;
-
-/*
+    private IncidentService incidentService;
+    @Autowired
+    private IncidentTypeService incidentTypeService;
+    @Autowired
+    private VehicleService vehicleService;
+    @Autowired
+    private AreaService areaService;
 
 
     @PostMapping
-    public ResponseEntity insertUser(@Valid @RequestBody final UserDto userDto) {
+    public ResponseEntity insertIncident(@Valid @RequestBody final IncidentDto incidentDto) {
 
-        if (userDto.getId() != null)
+        if (incidentDto.getId() != null)
             throw new MessageException("id must be empty !");
 
-        User user = new User();
-        Utils.copyProperties(userDto, user);
-        User resultUser = null;
+        if (incidentDto.getIncidentTypeId() == null)
+            throw new MessageException("getAtachmentId must not be empty !");
+
+        if (incidentDto.getAreaId() == null)
+            throw new MessageException("getAreaId must not be empty !");
+
+        if (incidentDto.getVehicleTypeId() == null)
+            throw new MessageException("getVehicleTypeId must not be empty !");
+
+        Incident incident = new Incident();
+        incident.setName(incidentDto.getName());
+        incident.setDescription(incidentDto.getDescription());
+        incident.setDangerLevel(incidentDto.getDangerLevel());
+        incident.setIncidentType(incidentTypeService.findOne(incidentDto.getIncidentTypeId()));
+        incident.setVehicleType(vehicleService.findOne(incidentDto.getVehicleTypeId()));
+        incident.setAtachment(incidentDto.getAtachment());
+        incident.setArea(areaService.findOne(incidentDto.getAreaId()));
+
+
+        Incident resultUser = null;
         try {
-            resultUser = userService.save(user);
+            resultUser = incidentService.save(incident);
         }catch (Exception e){
             throw new MessageException("ffffffff" + e.getMessage());
         }
         return resultUser == null
                 ? new ResponseEntity<>(HttpStatus.CONFLICT)
-                : new ResponseEntity<>(Utils.copyProperties(resultUser, new UserDto()), HttpStatus.OK);
+                : new ResponseEntity<>(resultUser, HttpStatus.OK);
 
     }
-
+/*
     @PutMapping
     public ResponseEntity updateUser(@Valid @RequestBody final UserDto userDto) {
 
@@ -102,7 +124,7 @@ public class IncidentController {
     @GetMapping
     public ResponseEntity getIncidents( ) {
 
-        List<Incident> incidents = postService.getAll();
+        List<Incident> incidents = incidentService.getAll();
         List<IncidentDto> incidentDtos = incidents.stream().map(IncidentDto::new).collect(Collectors.toList());
         return new ResponseEntity<>(incidentDtos, HttpStatus.OK);
 

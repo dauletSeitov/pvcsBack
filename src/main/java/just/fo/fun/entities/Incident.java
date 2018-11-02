@@ -35,4 +35,9 @@ public class Incident {
 
     private String atachment;
 
+    @NotNull
+    @ManyToOne
+    //@JoinColumn(name = "user_id")
+    private Area area;
+
 }

@@ -16,6 +16,13 @@ public class IncidentDto {
     private String incidentType;
     private String vehicleType;
     private String atachment;
+    private String area;
+
+    //input
+    private Long vehicleTypeId;
+    private Long incidentTypeId;
+    private Long areaId;
+    //input
 
     public IncidentDto(Incident incident) {
 
@@ -26,5 +33,6 @@ public class IncidentDto {
         this.incidentType = incident.getIncidentType() == null ? null : incident.getIncidentType().getName();
         this.vehicleType = incident.getVehicleType() == null ? null : incident.getVehicleType().getName();
         this.atachment = incident.getAtachment();
+        this.area = incident.getArea() == null ? null : incident.getArea().getName();
     }
 }
